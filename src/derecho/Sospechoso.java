@@ -7,6 +7,7 @@ public class Sospechoso {
 	
 	private PApplet app;
 	private String[] preguntas, respuestas;
+	private boolean[] pClickeadas; //Variable nueva, indica si se ha clickeado la pregunta
 	private PImage[] pj;
 	
 	public Sospechoso(PApplet app, int numSospechoso) {
@@ -20,6 +21,12 @@ public class Sospechoso {
 		pj = new PImage[2];
 		pj[0] = app.loadImage("pj"+numSospechoso+".png");
 		pj[1] = app.loadImage("pj"+numSospechoso+"selected.png");
+		
+		pClickeadas = new boolean[preguntas.length];
+		
+		for (int i = 0; i < pClickeadas.length; i++) {
+			pClickeadas[i] = false;
+		}
 	}
 
 	public void pintar(int x, int y) {
@@ -56,6 +63,14 @@ public class Sospechoso {
 
 	public String[] getRespuestas() {
 		return respuestas;
+	}
+
+	public boolean[] getpClickeadas() {
+		return pClickeadas;
+	}
+
+	public void setpClickeadas(boolean pClickeadas, int index) {
+		this.pClickeadas[index] = pClickeadas;
 	}
 	
 	

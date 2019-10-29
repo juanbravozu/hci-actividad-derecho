@@ -383,6 +383,8 @@ public class Logica {
 		}
 	}
 	
+	
+	//Cambios en este método ----------------------------------------------------------------
 	public void pintarDialogo(int index) {
 		app.image(fondo, 0, 0);
 		Sospechoso s = sospechosos[index];
@@ -402,10 +404,20 @@ public class Logica {
 			
 			
 			for(int i = 0; i < s.getPreguntas().length; i++) {
-				app.fill(255);
+				
+				//El color cambia si se clickea la pregunta
+				if(!s.getpClickeadas()[i]) {
+					app.fill(255);
+				} else {
+					app.fill(200);
+				}
 				app.rect(500, 290+(50*i), 600, 40, 10);
 				
-				app.fill(0);
+				if(!s.getpClickeadas()[i]) {
+					app.fill(0);
+				} else {
+					app.fill(80);
+				}
 				app.text(s.getPreguntas()[i], 800, 320+(50*i));
 			}
 			
@@ -426,11 +438,23 @@ public class Logica {
 			
 			
 			for(int i = 0; i < s.getPreguntas().length; i++) {
-				app.fill(255);
+				
+				//El color cambia si se clickea la pregunta
+				if(!s.getpClickeadas()[i]) {
+					app.fill(255);
+				} else {
+					app.fill(200);
+				}
 				app.rect(100, 290+(50*i), 600, 40, 10);
 				
-				app.fill(0);
+				if(!s.getpClickeadas()[i]) {
+					app.fill(0);
+				} else {
+					app.fill(80);
+				}
 				app.text(s.getPreguntas()[i], 400, 320+(50*i));
+				
+				
 			}
 		}
 		
@@ -438,6 +462,7 @@ public class Logica {
 		app.image(menu, 0, 606);
 	}
 
+	//Cambios en este método -------------------------------------------------------------
 	public void clickearDialogo(int index) {
 		Sospechoso s = sospechosos[index];
 		
@@ -450,6 +475,8 @@ public class Logica {
 				if(mX > 500 && mX < 1100 && mY > 290+(50*i) && mY < 330+(50*i)) {
 					dialogo = new StringBuffer();
 					indexDialogo = i+1;
+					//Cambia el booleano para indicar que se clickeó la pregunta
+					s.setpClickeadas(true, i);
 				}
 			}
 			
@@ -459,6 +486,7 @@ public class Logica {
 				if(mX > 100 && mX < 700 && mY > 290+(50*i) && mY < 330+(50*i)) {
 					dialogo = new StringBuffer();
 					indexDialogo = i+1;
+					s.setpClickeadas(true, i);
 				}
 			}
 		}
